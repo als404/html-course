@@ -401,6 +401,12 @@ form .form-group {
         font-size: 1.4em;
         margin: 1rem 0;
     }
+    #working .card {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
     form {
         padding-left: 0;
         padding-right: 0;

@@ -2,4 +2,4 @@
 
 ## Результат вы можете посмотреть тут
 
-[Моя работа](https://als404.github.io/html-course/)
+[Моя работа HTML & CSS & JS](https://als404.github.io/html-course/)

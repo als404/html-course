@@ -36,6 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const validate = (input) => {
+        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if (input.getAttribute('required') === null || input.value === '') {
+            input.classList.remove('valid');
+            input.classList.remove('invalid');
+        } else if ((input.getAttribute('type') === 'email' && re.test(input.value)) || 
+        (input.getAttribute('type') === 'text' && input.value.length > 0)) {
+            input.classList.add('valid');
+            input.classList.remove('invalid');
+        } else {
+            input.classList.remove('valid');
+            input.classList.add('invalid');
+        }
+    };
+
     form.addEventListener('focusin', (e) => {
         e.preventDefault();
         const target = e.target;
@@ -46,8 +61,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    form.addEventListener('focusout', () => {
+    form.addEventListener('focusout', (e) => {
         removeActive(form);
+        validate(e.target);
     });
 
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        removeActive(form);
+        form.reset();
+        const input = form.querySelectorAll('input');
+        input.forEach(item => {
+            item.classList.remove('valid');
+        });
+    });
 });

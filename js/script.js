@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    form.addEventListener('click', (e) => {
+    form.addEventListener('focusin', (e) => {
         e.preventDefault();
         const target = e.target;
 
@@ -29,7 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
             removeActive(form);
             addActive(target);
         }
+    });
 
+    form.addEventListener('focusout', () => {
+        removeActive(form);
     });
 
 });

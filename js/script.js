@@ -2,6 +2,19 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const smoothLinks = document.querySelectorAll('a[href^="#"]');
+    for (let smoothLink of smoothLinks) {
+        smoothLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = smoothLink.getAttribute('href');
+
+            document.querySelector(id).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    }
+
     const form = document.querySelector('form');
 
     const addActive = (field) => {
@@ -16,7 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const removeActive = (selector) => {
         selector.querySelectorAll('div').forEach(item => {
             if (item.lastElementChild.nodeName === 'LABEL'){
-                item.lastElementChild.classList.remove('active');
+                if (item.firstElementChild.value === '') {
+                    item.lastElementChild.classList.remove('active');
+                }
             }
         });
     };
